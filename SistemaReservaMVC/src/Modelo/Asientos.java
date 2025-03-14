@@ -8,13 +8,9 @@ public class Asientos {
     private int numero;
     private boolean reservado;
 
-    public Asientos(int numero, boolean reservado) {
+    public Asientos(int numero) {
         this.numero = numero;
-        this.reservado = reservado;
-    }
-
-    public int getNumero() {
-        return numero;
+        this.reservado = false;
     }
 
     public boolean isReservado() {
@@ -25,4 +21,7 @@ public class Asientos {
         this.reservado = reservado;
     }
 }
+
+
+
 

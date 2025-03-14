@@ -6,79 +6,31 @@ package Modelo;
 
 public class Sala {
     private String nombre;
-    private String tipo;
-    private int capacidad;
-    private String pelicula;
-    private boolean[] asientos; // Para almacenar la disponibilidad de los asientos (true = reservado, false = disponible)
+    private int asientosDisponibles;
 
-    public Sala(String nombre, String tipo, int capacidad, String pelicula) {
+    public Sala(String nombre, int asientosDisponibles) {
         this.nombre = nombre;
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-        this.pelicula = pelicula;
-        this.asientos = new boolean[capacidad];  // Inicializa los asientos, todos están disponibles al principio
+        this.asientosDisponibles = asientosDisponibles;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getAsientosDisponibles() {
+        return asientosDisponibles;
     }
 
-    public String getPelicula() {
-        return pelicula;
-    }
-
-    // Método para reservar un asiento
-    public boolean reservarAsiento(int asiento) {
-        if (asiento >= 0 && asiento < capacidad) {
-            if (!asientos[asiento]) {  // Si el asiento está disponible
-                asientos[asiento] = true;  // Se marca como reservado
-                System.out.println("Asiento " + asiento + " reservado.");
-                return true;
-            } else {
-                System.out.println("El asiento " + asiento + " ya está reservado.");
-                return false;
-            }
+    public void reservarAsiento() {
+        if (asientosDisponibles > 0) {
+            asientosDisponibles--;  
         } else {
-            System.out.println("Número de asiento inválido.");
-            return false;
+            System.out.println("No hay asientos disponibles en esta sala.");
         }
     }
 
-    // Método para cancelar una reserva de asiento
-    public boolean cancelarReserva(int asiento) {
-        if (asiento >= 0 && asiento < capacidad) {
-            if (asientos[asiento]) {  // Si el asiento está reservado
-                asientos[asiento] = false;  // Se marca como disponible
-                System.out.println("Reserva del asiento " + asiento + " cancelada.");
-                return true;
-            } else {
-                System.out.println("El asiento " + asiento + " no está reservado.");
-                return false;
-            }
-        } else {
-            System.out.println("Número de asiento inválido.");
-            return false;
-        }
-    }
-
-    // Método para verificar la disponibilidad de un asiento
-    public boolean verificarDisponibilidad(int asiento) {
-        if (asiento >= 0 && asiento < capacidad) {
-            return !asientos[asiento];  // Si el asiento está disponible (false), devuelve true
-        }
-        return false;
-    }
-
-    // Método para mostrar el estado de los asientos
-    public void mostrarEstado() {
-        System.out.println("Estado de los asientos en la sala " + nombre + ":");
-        for (int i = 0; i < capacidad; i++) {
-            System.out.println("Asiento " + i + ": " + (asientos[i] ? "Reservado" : "Disponible"));
-        }
+    public int asientosDisponibles() {
+        return asientosDisponibles;
     }
 }
 

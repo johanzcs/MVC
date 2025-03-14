@@ -2,45 +2,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+// Clase Cine
 package Modelo;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Cine {
-    private String nombreCine;
+    private String nombre;
     private List<Sala> salas;
 
-    // Constructor
-    public Cine(String nombreCine) {
-        this.nombreCine = nombreCine;
+    public Cine(String nombre) {
+        this.nombre = nombre;
         this.salas = new ArrayList<>();
-        // Crear algunas salas por defecto
-        salas.add(new Sala("Sala 1"));
-        salas.add(new Sala("Sala 2"));
-        salas.add(new Sala("Sala 3"));
+        this.salas.add(new Sala("Sala 1", 90));
+        this.salas.add(new Sala("Sala 2", 90));
+        this.salas.add(new Sala("Sala 3", 90));
     }
 
-    public String getNombreCine() {
-        return nombreCine;
+    public String getNombre() {
+        return nombre;
     }
 
-    public List<Sala> getSalas() {
+    public List<Sala> obtenerSalas() {
         return salas;
     }
 
-    public void mostrarSalas() {
-        System.out.println("Salas disponibles en " + nombreCine + ":");
-        for (int i = 0; i < salas.size(); i++) {
-            System.out.println((i + 1) + ". " + salas.get(i).getNombre());
+    public Sala obtenerSala(int numeroSala) {
+        if (numeroSala > 0 && numeroSala <= salas.size()) {
+            return salas.get(numeroSala - 1);  
         }
-    }
-
-    public Sala obtenerSala(int index) {
-        if (index >= 0 && index < salas.size()) {
-            return salas.get(index);
-        }
-        return null; // En caso de que no exista la sala
+        return null;
     }
 }
+
+
+
 

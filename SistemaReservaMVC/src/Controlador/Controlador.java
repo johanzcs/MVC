@@ -2,62 +2,73 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Controlador;
 
-import Vista.Formulario;
 import Modelo.Cine;
+import Modelo.Persona;
 import Modelo.Sala;
-import Modelo.Usuario;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Controlador {
-    private Formulario objFormulario;
-    private Cine objCine;
-    private Usuario objUsuario;
+    private Cine cine;
+    private List<Persona> usuarios;
 
     public Controlador() {
-        objFormulario = new Formulario();
-        objCine = new Cine("Cine Central");
+        this.cine = new Cine("Cine Central");  
+        this.usuarios = new ArrayList<>();
     }
 
-    public void mostrarMenu() {
-        int opcion;
-        do {
-            opcion = objFormulario.verMenuInicial();
-            switch (opcion) {
-                case 1:
-                    objUsuario = objFormulario.registrarUsuario();
-                    System.out.println("Usuario registrado correctamente.");
-                    break;
-                case 2:
-                    realizarReserva();
-                    break;
-                case 3:
-                    objCine.mostrarSalas();
-                    break;
-                case 4:
-                    System.out.println("¡Hasta luego!");
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente nuevamente.");
-                    break;
-            }
-        } while (opcion != 4);
+    public void registrarUsuario() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese su nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Ingrese su apellido: ");
+        String apellido = scanner.nextLine();
+
+        System.out.print("Ingrese su cédula: ");
+        String cedula = scanner.nextLine();
+
+        Persona nuevoUsuario = new Persona(nombre, apellido, cedula);
+
+        usuarios.add(nuevoUsuario);
+
+        System.out.println("Usuario registrado correctamente: " + nuevoUsuario);
     }
 
-    private void realizarReserva() {
-        System.out.println("Bienvenido a la reserva de asientos.");
-        objCine.mostrarSalas();
+    public void mostrarSalas() {
+        List<Sala> salas = cine.obtenerSalas();  
 
-        int opcionSala = objFormulario.obtenerEntradaNumero("Seleccione la sala: ");
-
-        if (opcionSala > 0 && opcionSala <= objCine.getSalas().size()) {
-            Sala salaSeleccionada = objCine.obtenerSala(opcionSala - 1); // index comienza en 0
-            System.out.println("Reserva realizada en " + salaSeleccionada.getNombre());
+        if (salas.isEmpty()) {
+            System.out.println("No hay salas disponibles.");
         } else {
-            System.out.println("Sala no válida. Por favor, selecciona una opción válida.");
+            System.out.println("Salas disponibles en " + cine.getNombre() + ":");
+            for (int i = 0; i < salas.size(); i++) {
+                System.out.println((i + 1) + ". " + salas.get(i).getNombre() + " - " + salas.get(i).asientosDisponibles() + " asientos disponibles");
+            }
+        }
+    }
+
+    public void gestionarReservas(Scanner scanner) {
+        mostrarSalas();
+        System.out.print("Seleccione una sala para hacer la reserva: ");
+        int opcionSala = scanner.nextInt();
+
+        Sala salaSeleccionada = cine.obtenerSala(opcionSala);  
+        if (salaSeleccionada != null) {
+            System.out.println("Reserva realizada en " + salaSeleccionada.getNombre());
+            salaSeleccionada.reservarAsiento();
+        } else {
+            System.out.println("Sala no válida.");
         }
     }
 }
+
+
 
 
 

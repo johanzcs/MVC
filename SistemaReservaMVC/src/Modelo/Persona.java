@@ -7,29 +7,39 @@ package Modelo;
 public class Persona {
     private String nombre;
     private String apellido;
-    private String id;
+    private String cedula;
 
-    public Persona(String nombre, String apellido, String id) {
+    public Persona(String nombre, String apellido, String cedula) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.id = id;
+        this.cedula = cedula;
     }
 
     public String getNombre() {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getApellido() {
         return apellido;
     }
 
-    public String getId() {
-        return id;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public void imprimirDatos() {
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Cédula: " + id);
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String toString() {
+        return "Nombre: " + nombre + " " + apellido + ", Cédula: " + cedula;
     }
 }

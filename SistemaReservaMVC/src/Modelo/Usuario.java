@@ -15,7 +15,6 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-    // Métodos getters
     public String getNombre() {
         return nombre;
     }
@@ -28,4 +27,5 @@ public class Usuario {
         return cedula;
     }
 }
+
 

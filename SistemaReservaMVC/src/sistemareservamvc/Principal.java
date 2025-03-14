@@ -5,11 +5,17 @@
 package sistemareservamvc;
 
 import Controlador.Controlador;
+import Vista.Formulario;
 
 public class Principal {
     public static void main(String[] args) {
-        Controlador objControlador = new Controlador(); // Crear el controlador
-        objControlador.gestionarOpciones(); // Llamar al método correcto para gestionar el menú
+        Controlador controlador = new Controlador();  
+        Formulario formulario = new Formulario(controlador);  
+        formulario.mostrarMenu();  
     }
 }
+
+
+
+
 
