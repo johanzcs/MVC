@@ -4,8 +4,8 @@
  */
 package Vista;
 
-
 import java.util.Scanner;
+import java.util.List;
 
 public class Formulario {
     private Scanner scanner;
@@ -17,7 +17,8 @@ public class Formulario {
     public int mostrarMenu() {
         System.out.println("\nMENÚ PRINCIPAL");
         System.out.println("1. Resolver una operación");
-        System.out.println("2. Salir");
+        System.out.println("2. Ver historial de operaciones");
+        System.out.println("3. Salir");
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
@@ -37,6 +38,13 @@ public class Formulario {
             System.out.println("Error: No se puede dividir por cero.");
         } else {
             System.out.println("Resultado: " + resultado);
+        }
+    }
+
+    public void mostrarHistorial(List<String> historial) {
+        System.out.println("\nHistorial de operaciones:");
+        for (String operacion : historial) {
+            System.out.println(operacion);
         }
     }
 }

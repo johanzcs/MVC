@@ -4,9 +4,10 @@
  */
 package Controlador;
 
-
 import Modelo.Operacion;
 import Vista.Formulario;
+
+import java.util.List;
 
 public class Controlador {
     private Formulario formulario;
@@ -29,6 +30,10 @@ public class Controlador {
                     formulario.mostrarResultado(calculo.calcular());
                     break;
                 case 2:
+                    List<String> historial = Operacion.obtenerHistorial();
+                    formulario.mostrarHistorial(historial);
+                    break;
+                case 3:
                     System.out.println("Gracias por usar la calculadora. ¡Hasta la próxima!");
                     continuar = false;
                     break;

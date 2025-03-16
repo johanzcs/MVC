@@ -4,6 +4,9 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OperacionBase {
     protected double num1;
     protected double num2;
