@@ -5,7 +5,7 @@
 package Modelo;
 
 public class Sensor {
-    protected boolean estado;
+    private boolean estado;
 
     public Sensor() {
         this.estado = false;
