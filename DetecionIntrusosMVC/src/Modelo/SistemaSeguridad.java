@@ -43,8 +43,7 @@ public class SistemaSeguridad {
         }
     }
 
-    public void verificarSeguridad() {
-        // Mostrar los estados de los sensores
+    public void verificarSeguridad()
         for (SensorMovimiento sensor : sensores) {
             sensor.mostrarEstado();
         }
