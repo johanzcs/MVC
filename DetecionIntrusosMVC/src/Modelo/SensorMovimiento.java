@@ -17,6 +17,6 @@ public class SensorMovimiento extends Sensor {
     }
 
     public void mostrarEstado() {
-        System.out.println("Sensor " + id + ": " + (estado ? "Detecta movimiento" : "Sin movimiento"));
+        System.out.println("Sensor " + id + ": " + (getEstado() ? "Detecta movimiento" : "Sin movimiento"));
     }
 }
